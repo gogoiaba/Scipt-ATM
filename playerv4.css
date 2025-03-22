@@ -154,6 +154,7 @@ h1 {
 h3 {
   font-size: 28px;
   margin-bottom: 10px;
+  font-weight: 700;
 }
 
 .container {
@@ -162,7 +163,7 @@ h3 {
   max-width: 80%;
   margin: auto;
   background: rgba(0, 0, 139, 0.2);
-  padding: 30px; /* Mais espaçamento para melhor organização */
+  padding: 30px;
   border-radius: 10px;
 }
 
@@ -173,7 +174,7 @@ h3 {
 
 .box {
   background: rgba(0, 0, 139, 0.5);
-  padding: 20px; /* Mais espaçamento dentro da caixa */
+  padding: 20px;
   margin-bottom: 15px;
   border-radius: 8px;
 }
@@ -181,7 +182,7 @@ h3 {
 .agendamento-item {
   display: flex;
   align-items: center;
-  font-size: 22px; /* Texto de agendamento maior */
+  font-size: 22px;
   padding: 5px 0;
 }
 
@@ -193,32 +194,41 @@ h3 {
 
 .input-horarios {
   display: flex;
-  gap: 10px;
-  margin-top: 10px; /* Espaçamento para separar os horários */
+  gap: 15px;
+  margin-top: 10px;
 }
 
 .input-horarios input {
-  width: 48%;
+  width: 100%;
 }
 
-/* Botão 'X' discreto para exclusão */
+#diasSemana {
+  width: 100%;
+  font-size: 24px;
+  padding: 10px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
 .agendamento-item button {
-  background: none;
-  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: solid 2px var(--branco);
+  border-radius: 4px;
   color: var(--branco);
   font-weight: bold;
-  font-size: 18px;
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
   margin-left: auto;
   opacity: 0.7;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.2s ease;
 }
 
 .agendamento-item button:hover {
   opacity: 1;
 }
 
-/* Botões maiores e com transparência leve */
 button {
   background-color: rgba(255, 255, 255, 0.1);
   border: solid 3px var(--branco);
@@ -227,13 +237,45 @@ button {
   text-shadow: 1px 1px 1px rgba(0, 33, 138, 0.5);
   font-weight: bold;
   cursor: pointer;
-  padding: 12px 0; /* Botões maiores */
+  padding: 10px 0;
   width: 100%;
   font-size: 26px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.1s ease, transform 0.1s ease;
 }
 
 button:hover {
   background-color: var(--laranja);
-  transform: scale(1.05);
+  transform: scale(1.02);
+}
+
+.botoes {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  gap: 10px;
+}
+
+#audioFile {
+  font-size: 24px;
+  gap: 5px;
+}
+
+.audio-box {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: solid 2px var(--branco);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.btn-agendamento {
+  margin-top: 20px;
+}
+
+#horaInicio,
+#horaFim {
+  font-size: 24px;
+}
+
+.horario {
+  font-size: 24px;
 }
