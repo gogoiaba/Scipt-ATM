@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Player de Áudio Programável - Versão 4</title>
+    <link rel="stylesheet" href="playerv4.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Player de Áudio Programável - Versão 4</h1>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="coluna">
+          <div class="box">
+            <h3>Agendamentos Padrão</h3>
+            <div id="agendamentosPadrao"></div>
+          </div>
+
+          <div class="box">
+            <h3>Arquivo MP3</h3>
+            <input type="file" id="audioFile" accept="audio/mp3" />
+          </div>
+
+          <div class="botoes">
+            <button onclick="tocarAgora()">Tocar Agora</button>
+            <button onclick="pararAudio()">Parar</button>
+          </div>
+        </div>
+
+        <div class="coluna">
+          <div class="box">
+            <h3>Novo Agendamento</h3>
+            <label>Escolha os dias:</label>
+            <select id="diasSemana" multiple>
+              <option value="0">Domingo</option>
+              <option value="1">Segunda-Feira</option>
+              <option value="2">Terça-Feira</option>
+              <option value="3">Quarta-Feira</option>
+              <option value="4">Quinta-Feira</option>
+              <option value="5">Sexta-Feira</option>
+              <option value="6">Sábado</option>
+            </select>
+            <label>Horário de Início:</label>
+            <input type="time" id="horaInicio" />
+            <label>Horário de Fim:</label>
+            <input type="time" id="horaFim" />
+            <button onclick="adicionarAgendamento()">
+              Adicionar Agendamento
+            </button>
+          </div>
+
+          <div class="box">
+            <h3>Agendamentos Personalizados</h3>
+            <div id="listaAgendamentos"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <audio id="audioPlayer" loop></audio>
+
+    <script src="playervr.js"></script>
+  </body>
+</html>
