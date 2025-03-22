@@ -94,6 +94,7 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
+
 article,
 aside,
 details,
@@ -107,17 +108,21 @@ nav,
 section {
   display: block;
 }
+
 body {
   line-height: 1;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -125,6 +130,7 @@ q:after {
   content: "";
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -190,6 +196,15 @@ h3 {
   margin-right: 5px;
   width: 18px;
   height: 18px;
+  border: solid 2px var(--branco);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.agendamento-item input[type="checkbox"]:checked {
+  background-color: var(--laranja);
+  border-color: var(--laranja);
+  outline: none;
 }
 
 .input-horarios {
@@ -208,6 +223,16 @@ h3 {
   padding: 10px;
   margin-bottom: 30px;
   margin-top: 10px;
+  background-color: var(--branco);
+  border: solid 2px var(--branco);
+  color: var(--marinho);
+  border-radius: 8px;
+}
+
+#diasSemana option:active,
+#diasSemana option:checked {
+  background-color: var(--laranja);
+  color: var(--branco);
 }
 
 .agendamento-item button {
@@ -216,13 +241,17 @@ h3 {
   border-radius: 4px;
   color: var(--branco);
   font-weight: bold;
-  font-size: 24px;
+  font-size: 16px;
   width: 24px;
   height: 24px;
+  line-height: 22px;
   cursor: pointer;
   margin-left: auto;
   opacity: 0.7;
   transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .agendamento-item button:hover {
@@ -256,14 +285,28 @@ button:hover {
 }
 
 #audioFile {
+  appearance: none;
+  -webkit-appearance: none;
   font-size: 24px;
-  gap: 5px;
+  background-color: transparent;
+  border: solid 2px var(--branco);
+  padding: 10px;
+  border-radius: 8px;
+  color: var(--branco);
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#audioFile:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--laranja);
 }
 
 .audio-box {
   background-color: rgba(255, 255, 255, 0.1);
-  border: solid 2px var(--branco);
-  padding: 10px;
+  padding: 15px;
   border-radius: 8px;
 }
 
@@ -278,4 +321,5 @@ button:hover {
 
 .horario {
   font-size: 24px;
+  padding: 5px;
 }

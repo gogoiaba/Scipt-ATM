@@ -21,7 +21,9 @@
 
           <div class="box">
             <h3>Arquivo MP3</h3>
-            <input type="file" id="audioFile" accept="audio/mp3" />
+            <div class="audio-box">
+              <input type="file" id="audioFile" accept="audio/mp3" />
+            </div>
           </div>
 
           <div class="botoes">
@@ -43,11 +45,11 @@
               <option value="5">Sexta-Feira</option>
               <option value="6">Sábado</option>
             </select>
-            <label>Horário de Início:</label>
+            <label class="horario">Horário de Início:</label>
             <input type="time" id="horaInicio" />
-            <label>Horário de Fim:</label>
+            <label class="horario">Horário de Fim:</label>
             <input type="time" id="horaFim" />
-            <button onclick="adicionarAgendamento()">
+            <button class="btn-agendamento" onclick="adicionarAgendamento()">
               Adicionar Agendamento
             </button>
           </div>
