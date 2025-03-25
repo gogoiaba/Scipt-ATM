@@ -147,10 +147,6 @@ table {
   border-spacing: 0;
 }
 
-header {
-  margin-bottom: auto;
-}
-
 h1 {
   color: var(--branco);
   font-family: Arial, Helvetica, sans-serif;
@@ -344,7 +340,7 @@ footer {
   background-color: var(--laranja);
   color: var(--branco);
   width: 100%;
-  margin-top: auto; /* Garante que fique no rodapé */
+  margin-top: auto;
 }
 
 footer h3 {
