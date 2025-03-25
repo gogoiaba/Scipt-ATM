@@ -1,9 +1,65 @@
 let agendamentos = [];
+let audioPlayer = document.getElementById("audioPlayer");
+let intervaloVerificacao;
 
 let agendamentosPadrao = [
   { dias: ["1", "2", "3", "4", "5"], horaInicio: "18:00", horaFim: "22:00" }, // Segunda a Sexta
   { dias: ["6", "0"], horaInicio: "06:00", horaFim: "22:00" }, // Sábado e Domingo
 ];
+
+// Inicia a verificação dos agendamentos quando a página carrega
+document.addEventListener("DOMContentLoaded", function () {
+  carregarAgendamentosPadrao();
+  iniciarVerificacaoAgendamentos();
+});
+
+function iniciarVerificacaoAgendamentos() {
+  // Verifica a cada minuto se deve tocar o áudio
+  intervaloVerificacao = setInterval(verificarAgendamentos, 60000);
+  // Verifica imediatamente ao carregar a página
+  verificarAgendamentos();
+}
+
+function verificarAgendamentos() {
+  let agora = new Date();
+  let diaSemana = agora.getDay().toString(); // 0-6 (Domingo-Sábado)
+  let horaAtual =
+    agora.getHours().toString().padStart(2, "0") +
+    ":" +
+    agora.getMinutes().toString().padStart(2, "0");
+
+  // Verifica agendamentos padrão ativos
+  let agendamentosAtivos = [...agendamentos];
+
+  // Adiciona agendamentos padrão marcados como ativos
+  document
+    .querySelectorAll('#agendamentosPadrao input[type="checkbox"]:checked')
+    .forEach((checkbox, index) => {
+      agendamentosAtivos.push({
+        ...agendamentosPadrao[index],
+        audioSrc: audioPlayer.src, // Usa o áudio atual
+      });
+    });
+
+  // Verifica se algum agendamento está ativo no momento
+  let agendamentoAtivo = agendamentosAtivos.find((ag) => {
+    return (
+      ag.dias.includes(diaSemana) &&
+      horaAtual >= ag.horaInicio &&
+      horaAtual <= ag.horaFim
+    );
+  });
+
+  if (agendamentoAtivo && audioPlayer.src) {
+    if (audioPlayer.paused) {
+      audioPlayer.play();
+    }
+  } else {
+    if (!audioPlayer.paused) {
+      audioPlayer.pause();
+    }
+  }
+}
 
 function carregarAgendamentosPadrao() {
   let lista = document.getElementById("agendamentosPadrao");
@@ -15,9 +71,9 @@ function carregarAgendamentosPadrao() {
     let div = document.createElement("div");
     div.className = "agendamento-item";
     div.innerHTML = `
-                        <input type="checkbox" id="padrao${index}" checked>
-                        <span>${diasTexto} - ${item.horaInicio} às ${item.horaFim}</span>
-                    `;
+      <input type="checkbox" id="padrao${index}" checked>
+      <span>${diasTexto} - ${item.horaInicio} às ${item.horaFim}</span>
+    `;
     lista.appendChild(div);
   });
 }
@@ -45,6 +101,11 @@ function adicionarAgendamento() {
     };
     agendamentos.push(novoAgendamento);
     atualizarLista();
+
+    // Se este for o primeiro agendamento, define o áudio
+    if (!audioPlayer.src) {
+      audioPlayer.src = e.target.result;
+    }
   };
   leitor.readAsDataURL(arquivo);
 }
@@ -59,9 +120,9 @@ function atualizarLista() {
     let div = document.createElement("div");
     div.className = "agendamento-item";
     div.innerHTML = `
-                        <span>${diasTexto} - ${item.horaInicio} às ${item.horaFim}</span>
-                        <button onclick="removerAgendamento(${index})">X</button>
-                    `;
+      <span>${diasTexto} - ${item.horaInicio} às ${item.horaFim}</span>
+      <button onclick="removerAgendamento(${index})">X</button>
+    `;
     lista.appendChild(div);
   });
 }
@@ -80,15 +141,12 @@ function tocarAgora() {
 
   let leitor = new FileReader();
   leitor.onload = function (e) {
-    let audio = document.getElementById("audioPlayer");
-    audio.src = e.target.result;
-    audio.play();
+    audioPlayer.src = e.target.result;
+    audioPlayer.play();
   };
   leitor.readAsDataURL(arquivo);
 }
 
 function pararAudio() {
-  document.getElementById("audioPlayer").pause();
+  audioPlayer.pause();
 }
-
-carregarAgendamentosPadrao();
